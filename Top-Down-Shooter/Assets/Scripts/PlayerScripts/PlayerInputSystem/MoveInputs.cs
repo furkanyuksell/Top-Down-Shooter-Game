@@ -21,7 +21,6 @@ public class MoveInputs : InputBase
         }
         else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
-            Debug.Log("Ne");
             OnMoveInput?.Invoke(UpdateMovePosition());
         }
         else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
