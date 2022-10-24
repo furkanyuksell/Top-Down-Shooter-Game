@@ -9,25 +9,22 @@ public class MovementBase : MonoBehaviour
 
     Vector3 movement;
     Vector3 _direction;
+    Vector3 _mousePos;
     float _changeRunSpeed=1;
     float _changeWalkSpeed=1;
     bool _isRun = false;
+    bool _canMove = false;
     
-    InputBase _inputBase;
-    void Awake()
-    {
-        _inputBase = new InputBase();
-    }
     void Update()
     {
         AimTowardMouse();
-
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (_isRun)
         {
             RunMovement();
         }else
         {
-            WalkMovement();
+            if(_canMove)
+                WalkMovement();   
         }
     }
     
@@ -41,23 +38,17 @@ public class MovementBase : MonoBehaviour
     }
     void WalkMovement()
     {
-        /*float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");*/
-        //movement = new Vector3(horizontal, 0f, vertical);
-
-        movement = _inputBase.MoveInputs();
         if (movement.magnitude > 0)
         {
             movement.Normalize();
             movement *= _speed * Time.deltaTime * _changeWalkSpeed;
             transform.Translate(movement, Space.World);
         }   
-        _isRun = false;
     }
 
     void AimTowardMouse()
     {
-        Ray ray = _inputBase.MousePosition();
+        Ray ray = Camera.main.ScreenPointToRay(_mousePos);
         if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, _aimLayerMask))
         {
             _direction = hitInfo.point - transform.position;
@@ -85,5 +76,59 @@ public class MovementBase : MonoBehaviour
     public void ChangeWalkSpeed(float speed)
     {
         _changeWalkSpeed = speed;
+    }
+    
+    private void CanMove(bool state)
+    {
+        _canMove = state;
+    }
+
+    private void OnMoveBasePressed()
+    {
+        CanMove(true);
+    }
+    private void OnMoveBaseReleased()
+    {
+        movement = new Vector3(0f, 0f, 0f);
+        CanMove(false);
+    }
+    private void OnMoveBaseInput(Vector3 newDirection)
+    {
+        movement = newDirection;
+    }
+
+    private void OnRunBasePressed()
+    {
+        _isRun = true;
+    }
+    private void OnRunBaseReleased()
+    {
+        _isRun = false;
+    }
+
+    private void OnMouseBasePosition(Vector3 getMousePos)
+    {
+        _mousePos = getMousePos;
+    }
+
+    void OnEnable()
+    {
+        InputBase.OnMovePressed += OnMoveBasePressed;
+        InputBase.OnMoveReleased += OnMoveBaseReleased;
+        InputBase.OnMoveInput += OnMoveBaseInput;
+        InputBase.OnRunPressed += OnRunBasePressed;
+        InputBase.OnRunReleased += OnRunBaseReleased;
+        InputBase.OnMousePosition += OnMouseBasePosition;
+    }
+
+    void OnDisable()
+    {
+        InputBase.OnMovePressed -= OnMoveBasePressed;
+        InputBase.OnMoveReleased -= OnMoveBaseReleased;
+        InputBase.OnMoveInput -= OnMoveBaseInput;
+        InputBase.OnRunPressed -= OnRunBasePressed;
+        InputBase.OnRunReleased -= OnRunBaseReleased;
+        InputBase.OnMousePosition -= OnMouseBasePosition;
+
     }
 }
