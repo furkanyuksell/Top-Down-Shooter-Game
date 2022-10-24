@@ -13,6 +13,11 @@ public class MovementBase : MonoBehaviour
     float _changeWalkSpeed=1;
     bool _isRun = false;
     
+    InputBase _inputBase;
+    void Awake()
+    {
+        _inputBase = new InputBase();
+    }
     void Update()
     {
         AimTowardMouse();
@@ -36,9 +41,11 @@ public class MovementBase : MonoBehaviour
     }
     void WalkMovement()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        movement = new Vector3(horizontal, 0f, vertical);
+        /*float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");*/
+        //movement = new Vector3(horizontal, 0f, vertical);
+
+        movement = _inputBase.MoveInputs();
         if (movement.magnitude > 0)
         {
             movement.Normalize();
@@ -50,7 +57,7 @@ public class MovementBase : MonoBehaviour
 
     void AimTowardMouse()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = _inputBase.MousePosition();
         if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, _aimLayerMask))
         {
             _direction = hitInfo.point - transform.position;
