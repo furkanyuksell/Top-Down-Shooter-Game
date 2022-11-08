@@ -8,17 +8,18 @@ public class Projectile : MonoBehaviour
     public void SetPool(ObjectPool<Projectile> pool) => _pool = pool;
     [SerializeField] Rigidbody _rb;
     float _range;
-    float _oldPosZ;
+    Vector3 _oldPos;
+
     public void Setup(float range)
     {
         _rb.velocity = Vector3.zero;
         _range = range;
-        _oldPosZ = transform.position.z;   
+        _oldPos = transform.position;   
     }
 
     void FixedUpdate()
     {
-        if ((transform.position.z - _oldPosZ) >= _range)
+        if (Vector3.Distance(transform.position, _oldPos) >= _range)
         {
             _pool.Release(this);
         }

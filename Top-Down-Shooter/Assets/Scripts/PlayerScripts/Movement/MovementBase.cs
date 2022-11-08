@@ -12,7 +12,7 @@ public class MovementBase : MonoBehaviour
     Vector3 _mousePos;
     float _changeRunSpeed=1;
     float _changeWalkSpeed=1;
-    bool _isRun = false;
+    bool _isRun = false;            
     bool _canMove = false;
     
     void Update()

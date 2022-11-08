@@ -5,6 +5,8 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] WeaponData _weaponData;
+    [SerializeField] ParticleSystem _shootParticle;
+    [SerializeField] AudioSource _shootSource;
     Shooter[] shooters;    
     float _fireRateCounter = 0f;
     bool _canFire = true;
@@ -40,10 +42,17 @@ public class Weapon : MonoBehaviour
         {
             foreach (var shooter in shooters)
             {
+                ShootEffects();
                 shooter.Shoot();
             }   
             _canFire = false;
         }
+    }
+
+    void ShootEffects()
+    {
+        _shootParticle.Play();
+        _shootSource.Play();
     }
 
 }
