@@ -8,14 +8,14 @@ public class ShootInputs : InputBase
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Fire");
+            OnMouseDown?.Invoke();
         }
         else if (Input.GetMouseButton(0))
         {
-            Debug.Log("FireGoesOn");
+            OnMouseDrag?.Invoke(Input.mousePosition);
         }else if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("EndFire");
+            OnMouseUp?.Invoke();
         }
     }
 }
