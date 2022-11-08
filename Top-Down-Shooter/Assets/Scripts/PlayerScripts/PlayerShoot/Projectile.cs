@@ -29,4 +29,13 @@ public class Projectile : MonoBehaviour
     {
         _rb.AddForce(transform.forward*10, ForceMode.Impulse);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<EnemyCombat>(out EnemyCombat enemyCombat))
+        {
+            enemyCombat.SplitIt();
+            _pool.Release(this);
+        }
+    }
 }
