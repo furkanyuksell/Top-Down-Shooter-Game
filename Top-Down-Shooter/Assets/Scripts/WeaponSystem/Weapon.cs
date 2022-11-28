@@ -13,15 +13,22 @@ public class Weapon : MonoBehaviour
     void Awake() 
     {        
         shooters = GetComponentsInChildren<Shooter>();
+        
+        if (shooters.Length == 0)
+        {
+            Debug.Log("Shooter Scripts Not Added in WeaponTip");
+            return;
+        }
+
         foreach (var shooter in shooters)
         {
             shooter.InitShooter(_weaponData.projectile, _weaponData.damage, _weaponData.range);
-        }   
+        }
     }
 
-    void Start() 
+    void Start()
     {
-        ProjectilePool.Instance.InitProjectile(_weaponData.projectile);
+        WeaponBase.OnInitProjectile?.Invoke();   
     }
 
     void Update()
@@ -40,8 +47,10 @@ public class Weapon : MonoBehaviour
     {
         if (_canFire)
         {
+            Debug.Log("true");
             foreach (var shooter in shooters)
             {
+                Debug.Log("WeaponShootWorks");
                 ShootEffects();
                 shooter.Shoot();
             }   
@@ -53,6 +62,21 @@ public class Weapon : MonoBehaviour
     {
         _shootParticle.Play();
         _shootSource.Play();
+    }
+
+    public void OnInitProjectile()
+    {
+        ProjectilePool.Instance.InitProjectile(_weaponData.projectile);
+    }
+
+    void OnEnable()
+    {
+        WeaponBase.OnInitProjectile += OnInitProjectile;
+    }
+
+    void OnDisable()
+    {
+        WeaponBase.OnInitProjectile -= OnInitProjectile;
     }
 
 }

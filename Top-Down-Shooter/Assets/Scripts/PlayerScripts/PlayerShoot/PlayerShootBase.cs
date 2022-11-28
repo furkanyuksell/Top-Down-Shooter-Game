@@ -31,22 +31,30 @@ public class PlayerShootBase : MonoBehaviour
     {
         //fireDirection Kalkabilir kullanılmıyor su anda
         _fireDirection = fireDirection;
-        if (!_movementBase.RunControl())
+        if (!_movementBase.RunControl() && _weapon != null)
         {
             _weapon.WeaponShoot();   
         }
     }
 
+    private void OnWeaponChange(Weapon weapon)
+    {
+        Destroy(_weapon.gameObject);
+        _weapon = weapon;
+    }
+
     void OnEnable()
     {
-        InputBase.OnMouseDown += OnShootMouseDown;
-        InputBase.OnMouseUp   += OnShootMouseUp;
-        InputBase.OnMouseDrag += OnShootMouseDrag;
+        InputBase.OnMouseDown     += OnShootMouseDown;
+        InputBase.OnMouseUp       += OnShootMouseUp;
+        InputBase.OnMouseDrag     += OnShootMouseDrag;
+        WeaponBase.OnWeaponChange += OnWeaponChange;
     }
     void OnDisable()
     {
-        InputBase.OnMouseDown -= OnShootMouseDown;
-        InputBase.OnMouseUp   -= OnShootMouseUp;
-        InputBase.OnMouseDrag -= OnShootMouseDrag;
+        InputBase.OnMouseDown     -= OnShootMouseDown;
+        InputBase.OnMouseUp       -= OnShootMouseUp;
+        InputBase.OnMouseDrag     -= OnShootMouseDrag;
+        WeaponBase.OnWeaponChange -= OnWeaponChange;
     }
 }
