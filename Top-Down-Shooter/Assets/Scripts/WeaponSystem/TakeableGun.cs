@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class TakeableGun : WeaponBase
+public class TakeableGun : MonoBehaviour
 {
     [SerializeField] float _rotatingSpeed;
     [SerializeField] GameObject _gun;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -20,12 +19,14 @@ public class TakeableGun : WeaponBase
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponentInChildren<PlayerShootBase>())
+        if (other.GetComponentInChildren<PlayerSecondaryGun>())
         {
-            var newGun = Instantiate(_gun, other.GetComponentInChildren<PlayerShootBase>().transform);
-            OnWeaponChange?.Invoke(newGun.GetComponentInChildren<Weapon>());
-            OnInitProjectile?.Invoke();
-            Destroy(this.gameObject);
+            if (!other.GetComponentInChildren<PlayerSecondaryGun>().HasSecondGun())
+            {
+                var newGun = Instantiate(_gun, other.GetComponentInChildren<PlayerSecondaryGun>().transform);
+                other.GetComponentInChildren<PlayerSecondaryGun>().SetSecondryGun(newGun.GetComponentInChildren<Weapon>());
+                Destroy(this.gameObject);   
+            }
         }
     }
 }

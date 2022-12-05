@@ -47,10 +47,8 @@ public class Weapon : MonoBehaviour
     {
         if (_canFire)
         {
-            Debug.Log("true");
             foreach (var shooter in shooters)
             {
-                Debug.Log("WeaponShootWorks");
                 ShootEffects();
                 shooter.Shoot();
             }   

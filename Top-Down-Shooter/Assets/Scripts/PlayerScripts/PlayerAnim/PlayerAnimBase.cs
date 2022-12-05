@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class WeaponBase : MonoBehaviour
+public class PlayerAnimBase : MonoBehaviour
 {
-    public static Action OnInitProjectile;
+    public static Action OnWeaponChangeAnim;
 }

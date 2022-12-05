@@ -16,6 +16,11 @@ public class InputBase : MonoBehaviour
     public static Action OnRunReleased;
     #endregion
 
+    #region ChangeWeapon
+    public static Action OnWeaponChange;
+    public static Action OnWeaponDrop;
+    #endregion
+
     //Mouse Position for player rotation
     public static Action<Vector3> OnMousePosition;
 

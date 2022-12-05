@@ -68,6 +68,11 @@ public class MovementBase : MonoBehaviour
         return _isRun;
     }
 
+    public bool WalkControl()
+    {
+        return _canMove;
+    }
+
     //Call from another script this function to change movement speed
     public void ChangeRunSpeed(float speed)
     {

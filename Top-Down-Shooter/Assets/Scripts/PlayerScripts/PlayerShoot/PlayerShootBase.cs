@@ -5,18 +5,28 @@ using UnityEngine;
 using UnityEngine.Pool;
 
 public class PlayerShootBase : MonoBehaviour
-{
+{// On the other hand this class is Primary Gun Class
     bool _canFire = false; // su anda kullanılmıyor sadece eklenti
     [SerializeField] MovementBase _movementBase;
+    [SerializeField] PlayerSecondaryGun playerSecondaryGun;
     Vector3 _fireDirection;
     Weapon _weapon;
+    bool _canChangeWeapon = true;
     void Awake()
     {
         if (_weapon == null)
         {
             _weapon = GetComponentInChildren<Weapon>();
+            SetGunTransform();
         }
     }
+
+    void SetGunTransform()
+    {
+        _weapon.transform.position = this.transform.position;
+        _weapon.transform.rotation = this.transform.rotation;
+    }
+
     private void OnShootMouseDown()
     {
         _canFire = true;
@@ -37,10 +47,38 @@ public class PlayerShootBase : MonoBehaviour
         }
     }
 
-    private void OnWeaponChange(Weapon weapon)
+    void InitializeWeapon(Weapon weapon)
     {
-        Destroy(_weapon.gameObject);
         _weapon = weapon;
+        SetGunTransform();
+    }
+
+    void WeaponChange()
+    {
+        if (playerSecondaryGun.HasSecondGun() && _canChangeWeapon)
+        {
+            PlayerAnimBase.OnWeaponChangeAnim?.Invoke();
+            StartCoroutine(IsWeaponChangeAnimReady(.8f));
+            EventManagement.FreezeMoveSystem?.Invoke(false);
+            EventManagement.FreezeGunSystem?.Invoke(false);
+            _canChangeWeapon = false;
+        }
+    }
+
+    IEnumerator IsWeaponChangeAnimReady(float animTime)
+    {
+        yield return new WaitForSeconds(animTime);
+        _weapon = playerSecondaryGun.GetSecondaryWeapon(_weapon);
+        InitializeWeapon(_weapon);
+        StartCoroutine(CanUseableAgain(1));// Globallestirilebilir!!!!!!!!!!!!!!!
+    }
+
+    IEnumerator CanUseableAgain(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        _canChangeWeapon = true;
+        EventManagement.FreezeMoveSystem?.Invoke(true);
+        EventManagement.FreezeGunSystem?.Invoke(true);
     }
 
     void OnEnable()
@@ -48,13 +86,13 @@ public class PlayerShootBase : MonoBehaviour
         InputBase.OnMouseDown     += OnShootMouseDown;
         InputBase.OnMouseUp       += OnShootMouseUp;
         InputBase.OnMouseDrag     += OnShootMouseDrag;
-        WeaponBase.OnWeaponChange += OnWeaponChange;
+        InputBase.OnWeaponChange  += WeaponChange;
     }
     void OnDisable()
     {
         InputBase.OnMouseDown     -= OnShootMouseDown;
         InputBase.OnMouseUp       -= OnShootMouseUp;
         InputBase.OnMouseDrag     -= OnShootMouseDrag;
-        WeaponBase.OnWeaponChange -= OnWeaponChange;
+        InputBase.OnWeaponChange  -= WeaponChange;
     }
 }

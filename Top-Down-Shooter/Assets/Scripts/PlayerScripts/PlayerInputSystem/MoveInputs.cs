@@ -5,6 +5,8 @@ using UnityEngine;
 public class MoveInputs : InputBase
 {
     float horizontal, vertical;
+    bool canUseMovementSystem=true;
+
     private Vector3 UpdateMovePosition()
     {
         horizontal = Input.GetAxis("Horizontal");
@@ -14,32 +16,53 @@ public class MoveInputs : InputBase
     
     void Update()
     {
-        #region if(Walk)
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+        if (canUseMovementSystem)
         {
-            OnMovePressed?.Invoke();
-        }
-        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-        {
-            OnMoveInput?.Invoke(UpdateMovePosition());
-        }
-        else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
+            #region if(Walk)
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
+            {
+                OnMovePressed?.Invoke();
+            }
+            else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+            {
+                OnMoveInput?.Invoke(UpdateMovePosition());
+            }
+            else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
+            {
+                OnMoveReleased?.Invoke();
+            }
+            #endregion
+
+            #region if(Run)
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                OnRunPressed?.Invoke();
+            }else if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                OnRunReleased?.Invoke();
+            }
+            #endregion            
+        }else
         {
             OnMoveReleased?.Invoke();
-        }
-        #endregion
-
-        #region if(Run)
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            OnRunPressed?.Invoke();
-        }else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
             OnRunReleased?.Invoke();
         }
-        #endregion
         
         OnMousePosition?.Invoke(Input.mousePosition);
         
+    }
+
+    void UseMovementSystem(bool state)
+    {   
+        canUseMovementSystem = state;
+    }
+
+    void OnEnable()
+    {
+        EventManagement.FreezeMoveSystem += UseMovementSystem;
+    }
+    void OnDisable()
+    {
+        EventManagement.FreezeMoveSystem -= UseMovementSystem;
     }
 }
