@@ -6,6 +6,10 @@ public class PlayerRigging : MonoBehaviour
 {
     
     [SerializeField] Rig _runningLayer;
+    [SerializeField] Transform weaponParent;
+    [SerializeField] Transform weaponLeftGrip;
+    [SerializeField] Transform weaponRightGrip;
+    [SerializeField] Animator rigController;
     
     void SetRigRunning(bool state)
     {

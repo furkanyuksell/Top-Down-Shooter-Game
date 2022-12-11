@@ -1639,6 +1639,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _runningLayer: {fileID: 1307377906}
+  weaponParent: {fileID: 410990417}
+  weaponLeftGrip: {fileID: 1629615313}
+  weaponRightGrip: {fileID: 1548717419}
+  rigController: {fileID: 6513697}
 --- !u!1 &973849865
 GameObject:
   m_ObjectHideFlags: 0
