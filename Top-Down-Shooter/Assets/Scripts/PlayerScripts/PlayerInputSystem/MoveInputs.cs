@@ -37,9 +37,11 @@ public class MoveInputs : InputBase
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 OnRunPressed?.Invoke();
+                EventManagement.OnRigRunning?.Invoke(true);
             }else if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 OnRunReleased?.Invoke();
+                EventManagement.OnRigRunning?.Invoke(false);
             }
             #endregion            
         }else

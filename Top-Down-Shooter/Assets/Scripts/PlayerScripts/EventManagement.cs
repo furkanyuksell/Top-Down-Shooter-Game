@@ -7,4 +7,6 @@ public class EventManagement : MonoBehaviour
 {
     public static Action<bool> FreezeGunSystem;
     public static Action<bool> FreezeMoveSystem;
+
+    public static Action<bool> OnRigRunning;
 }
