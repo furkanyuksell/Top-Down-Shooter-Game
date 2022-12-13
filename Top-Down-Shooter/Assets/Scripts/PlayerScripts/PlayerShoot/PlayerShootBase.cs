@@ -59,7 +59,6 @@ public class PlayerShootBase : MonoBehaviour
         {
             PlayerAnimBase.OnWeaponChangeAnim?.Invoke();
             StartCoroutine(IsWeaponChangeAnimReady(.8f));
-            EventManagement.FreezeMoveSystem?.Invoke(false);
             EventManagement.FreezeGunSystem?.Invoke(false);
             _canChangeWeapon = false;
         }
@@ -70,16 +69,8 @@ public class PlayerShootBase : MonoBehaviour
         yield return new WaitForSeconds(animTime);
         _weapon = playerSecondaryGun.GetSecondaryWeapon(_weapon);
         InitializeWeapon(_weapon);
-        StartCoroutine(CanUseableAgain(1));// Globallestirilebilir!!!!!!!!!!!!!!!
-    }
-
-    IEnumerator CanUseableAgain(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
         _canChangeWeapon = true;
-        EventManagement.FreezeMoveSystem?.Invoke(true);
-        EventManagement.FreezeGunSystem?.Invoke(true);
-    }
+        EventManagement.FreezeGunSystem?.Invoke(true);    }
 
     void OnEnable()
     {

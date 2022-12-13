@@ -26,22 +26,4 @@ public class PlayerAnim : MonoBehaviour
             _animator.SetFloat("VelocityX", velocityX, 0.1f, Time.deltaTime);
         }
     }
-
-    void OnWeaponChangeAnim()
-    {
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("WeaponChange"))
-            return;
-            
-        _animator.SetTrigger("GunChange");
-    }
-
-    void OnEnable()
-    {
-        PlayerAnimBase.OnWeaponChangeAnim += OnWeaponChangeAnim;
-    }
-    
-    void OnDisable()
-    {
-        PlayerAnimBase.OnWeaponChangeAnim -= OnWeaponChangeAnim;        
-    }
 }

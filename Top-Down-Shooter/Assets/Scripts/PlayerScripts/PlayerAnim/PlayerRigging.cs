@@ -21,13 +21,21 @@ public class PlayerRigging : MonoBehaviour
             _runningLayer.weight = 0f;
         }
     }
+    void OnWeaponChangeAnim()
+    {
+        if (rigController.GetCurrentAnimatorStateInfo(0).IsName("WeaponChange"))
+            return;
+        rigController.Play("WeaponChange");
+    }
     void OnEnable()
     {
+        PlayerAnimBase.OnWeaponChangeAnim += OnWeaponChangeAnim;
         EventManagement.OnRigRunning += SetRigRunning;
     }
 
     void OnDisable()
     {
+        PlayerAnimBase.OnWeaponChangeAnim -= OnWeaponChangeAnim;        
         EventManagement.OnRigRunning -= SetRigRunning;
     }
 }
