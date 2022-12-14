@@ -70,7 +70,8 @@ public class PlayerShootBase : MonoBehaviour
         _weapon = playerSecondaryGun.GetSecondaryWeapon(_weapon);
         InitializeWeapon(_weapon);
         _canChangeWeapon = true;
-        EventManagement.FreezeGunSystem?.Invoke(true);    }
+        EventManagement.FreezeGunSystem?.Invoke(true);
+    }
 
     void OnEnable()
     {

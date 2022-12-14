@@ -25,7 +25,9 @@ public class PlayerRigging : MonoBehaviour
     {
         if (rigController.GetCurrentAnimatorStateInfo(0).IsName("WeaponChange"))
             return;
-        rigController.Play("WeaponChange");
+        rigController.SetTrigger("Change");
+        //rigController.Play("WeaponChangeV2");
+        
     }
     void OnEnable()
     {
