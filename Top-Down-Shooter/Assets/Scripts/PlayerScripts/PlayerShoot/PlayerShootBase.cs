@@ -58,9 +58,9 @@ public class PlayerShootBase : MonoBehaviour
         if (playerSecondaryGun.HasSecondGun() && _canChangeWeapon)
         {
             PlayerAnimBase.OnWeaponChangeAnim?.Invoke();
-            StartCoroutine(IsWeaponChangeAnimReady(.8f));
             EventManagement.FreezeGunSystem?.Invoke(false);
             _canChangeWeapon = false;
+            StartCoroutine(IsWeaponChangeAnimReady(.6f));
         }
     }
 
@@ -68,7 +68,7 @@ public class PlayerShootBase : MonoBehaviour
     {
         yield return new WaitForSeconds(animTime);
         _weapon = playerSecondaryGun.GetSecondaryWeapon(_weapon);
-        Debug.Log(_weapon.AnimName());
+        PlayerAnimBase.OnRigControllerTriggerAnim?.Invoke(_weapon.AnimName());
         InitializeWeapon(_weapon);
         _canChangeWeapon = true;
         EventManagement.FreezeGunSystem?.Invoke(true);
