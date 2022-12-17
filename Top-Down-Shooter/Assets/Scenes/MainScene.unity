@@ -2690,7 +2690,7 @@ GameObject:
   - component: {fileID: 1886213417}
   - component: {fileID: 1886213416}
   m_Layer: 5
-  m_Name: LevelBar
+  m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
