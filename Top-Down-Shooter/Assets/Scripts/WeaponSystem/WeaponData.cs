@@ -8,4 +8,5 @@ public class WeaponData : ScriptableObject {
     public float damage = 5f;
     public float fireRate = 0.5f;
     public float range = 10;    
+    public string animName;
 }

@@ -23,21 +23,30 @@ public class PlayerRigging : MonoBehaviour
     }
     void OnWeaponChangeAnim()
     {
+        /*
         if (rigController.GetCurrentAnimatorStateInfo(0).IsName("WeaponChange"))
             return;
-        rigController.SetTrigger("Change");
-        //rigController.Play("WeaponChangeV2");
-        
+        */
+        //rigController.SetTrigger("Change");
+        rigController.Play("WeaponRifle");    
     }
+
+    void TriggerAnim(string triggerName)
+    {
+        rigController.Play("Weapon"+triggerName);
+    }
+
     void OnEnable()
     {
         PlayerAnimBase.OnWeaponChangeAnim += OnWeaponChangeAnim;
+        PlayerAnimBase.OnRigControllerTriggerAnim += TriggerAnim;
         EventManagement.OnRigRunning += SetRigRunning;
     }
 
     void OnDisable()
     {
-        PlayerAnimBase.OnWeaponChangeAnim -= OnWeaponChangeAnim;        
+        PlayerAnimBase.OnWeaponChangeAnim -= OnWeaponChangeAnim; 
+        PlayerAnimBase.OnRigControllerTriggerAnim -= TriggerAnim;       
         EventManagement.OnRigRunning -= SetRigRunning;
     }
 }

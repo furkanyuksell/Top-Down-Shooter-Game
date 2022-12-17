@@ -6,4 +6,5 @@ using UnityEngine;
 public class PlayerAnimBase : MonoBehaviour
 {
     public static Action OnWeaponChangeAnim;
+    public static Action<string> OnRigControllerTriggerAnim;
 }

@@ -25,6 +25,9 @@ public class Weapon : MonoBehaviour
             shooter.InitShooter(_weaponData.projectile, _weaponData.damage, _weaponData.range);
         }
     }
+    public string AnimName(){
+        return _weaponData.animName;
+    }
 
     void Start()
     {

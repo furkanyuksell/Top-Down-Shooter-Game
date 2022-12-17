@@ -16,3 +16,4 @@ MonoBehaviour:
   damage: 5
   fireRate: 1
   range: 10
+  animName: Pistol

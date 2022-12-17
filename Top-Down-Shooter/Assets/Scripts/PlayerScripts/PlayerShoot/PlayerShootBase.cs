@@ -68,6 +68,7 @@ public class PlayerShootBase : MonoBehaviour
     {
         yield return new WaitForSeconds(animTime);
         _weapon = playerSecondaryGun.GetSecondaryWeapon(_weapon);
+        Debug.Log(_weapon.AnimName());
         InitializeWeapon(_weapon);
         _canChangeWeapon = true;
         EventManagement.FreezeGunSystem?.Invoke(true);
