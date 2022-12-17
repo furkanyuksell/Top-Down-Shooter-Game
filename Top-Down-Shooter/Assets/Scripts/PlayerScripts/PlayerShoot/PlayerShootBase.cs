@@ -60,7 +60,7 @@ public class PlayerShootBase : MonoBehaviour
             PlayerAnimBase.OnWeaponChangeAnim?.Invoke();
             EventManagement.FreezeGunSystem?.Invoke(false);
             _canChangeWeapon = false;
-            StartCoroutine(IsWeaponChangeAnimReady(.6f));
+            StartCoroutine(IsWeaponChangeAnimReady(.8f));
         }
     }
 
