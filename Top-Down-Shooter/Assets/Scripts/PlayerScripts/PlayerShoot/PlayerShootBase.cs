@@ -55,7 +55,7 @@ public class PlayerShootBase : MonoBehaviour
 
     void WeaponChange()
     {
-        if (playerSecondaryGun.HasSecondGun() && _canChangeWeapon)
+        if (playerSecondaryGun.HasSecondGun() && _canChangeWeapon && !_movementBase.RunControl())
         {
             PlayerAnimBase.OnWeaponChangeAnim?.Invoke();
             EventManagement.FreezeGunSystem?.Invoke(false);
