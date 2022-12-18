@@ -16,6 +16,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Awake()
     {
+        _playerTransform = FindObjectOfType<MovementBase>().transform;
         _moveDirection = Vector3.zero;
         m_Rigidbody = GetComponent<Rigidbody>();
     }
