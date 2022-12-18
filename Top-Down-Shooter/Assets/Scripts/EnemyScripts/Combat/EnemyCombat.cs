@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class EnemyCombat : MonoBehaviour
+public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
 {
+    [SerializeField] int _health = 2;
     [SerializeField] GameObject[] children;
     [SerializeField] float[] offsets;
-
 
     public void SplitIt()
     {
@@ -25,5 +25,20 @@ public class EnemyCombat : MonoBehaviour
             }
         }
         gameObject.SetActive(false);
+    }
+    public void Damage(int damageTaken)
+    {
+        _health -= damageTaken;
+        if (_health <= 0)
+        {
+            var expParticle = ParticlePool.Instance.expParticlePool.Get();
+            expParticle.transform.position = transform.position;
+            SplitIt();
+        }
+    }
+
+    public void Kill()
+    {
+        _health = 0;
     }
 }

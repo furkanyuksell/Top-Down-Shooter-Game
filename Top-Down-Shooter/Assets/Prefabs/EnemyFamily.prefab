@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e0fac265cb3bb4788409f985915488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 1
   _minDistance: 3
   _playerTransform: {fileID: 0}
 --- !u!114 &6360645665874903819
@@ -320,6 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b821ef7939e3bf54a8771952fb3b3d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 20
   children:
   - {fileID: 6944814357286000500}
   - {fileID: 8694813206428741527}
@@ -634,7 +635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e0fac265cb3bb4788409f985915488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 1
   _minDistance: 3
   _playerTransform: {fileID: 0}
 --- !u!114 &8407093091862471837
@@ -649,6 +650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b821ef7939e3bf54a8771952fb3b3d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 10
   children: []
   offsets: []
 --- !u!54 &6944814357286000501
@@ -879,7 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5e0fac265cb3bb4788409f985915488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 1
   _minDistance: 3
   _playerTransform: {fileID: 0}
 --- !u!114 &7809593358246321278
@@ -894,6 +896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b821ef7939e3bf54a8771952fb3b3d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 10
   children: []
   offsets: []
 --- !u!54 &8694813206428741526
