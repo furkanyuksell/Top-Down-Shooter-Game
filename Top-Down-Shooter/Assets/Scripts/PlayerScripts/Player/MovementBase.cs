@@ -38,7 +38,8 @@ public class MovementBase : MonoBehaviour
     }
     void WalkMovement()
     {
-        if (movement.magnitude > 0)
+        
+        if (!movement.Equals(Vector3.zero))
         {
             movement.Normalize();
             movement *= _speed * Time.deltaTime * _changeWalkSpeed;

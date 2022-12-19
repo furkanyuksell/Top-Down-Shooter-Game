@@ -13,7 +13,6 @@ public class EnemyMovement : MonoBehaviour
     Vector3 _moveDirection;
     bool _waitForASecond;
 
-
     private void Awake()
     {
         _playerTransform = FindObjectOfType<MovementBase>().transform;

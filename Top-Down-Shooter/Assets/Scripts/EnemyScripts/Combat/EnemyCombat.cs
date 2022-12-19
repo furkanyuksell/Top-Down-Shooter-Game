@@ -31,8 +31,8 @@ public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
                 children[i].transform.forward = transform.forward;
                 children[i].transform.position = transform.position;
                 children[i].SetActive(true);
-                children[i].transform.DOMove(new Vector3(transform.position.x, 3f, transform.position.z) + transform.right / 2 * offsets[i], 0.4f).OnComplete(
-                    ()=> children[i].transform.DOMove(new Vector3(transform.position.x, 1f, transform.position.z) + transform.right * offsets[i], 0.4f) );
+                children[i].transform.DOMove(new Vector3(transform.position.x, 3f, transform.position.z) + transform.right / 2 * offsets[i], 0.4f)
+                    .OnComplete(() => children[i].transform.DOMove(new Vector3(transform.position.x, 1f, transform.position.z) + transform.right * offsets[i], 0.4f));
 
                         
             }
@@ -77,7 +77,6 @@ public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
         {
             if (other.TryGetComponent<PlayerBase>(out PlayerBase playerBase))
             {
-                Debug.Log("Attack");
                 enemyAnim.AnimTrigger("Attack");
                 IDamageable damageable = playerBase.GetComponent<IDamageable>();
                 damageable.Damage(_damage);
