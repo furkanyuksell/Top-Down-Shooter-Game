@@ -6,8 +6,21 @@ using DG.Tweening;
 public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
 {
     [SerializeField] int _health = 2;
+    [SerializeField] int _damage = 2;
+    [SerializeField] float _attackSpeed=2f;
+    float _attackTime=0;
     [SerializeField] GameObject[] children;
     [SerializeField] float[] offsets;
+    [SerializeField] EnemyAnim enemyAnim;
+    [SerializeField] Collider _enemyCollider;
+    
+    bool isAlive = true;
+
+
+    private void FixedUpdate()
+    {
+        _attackTime += Time.deltaTime;
+    }
 
     public void SplitIt()
     {
@@ -26,19 +39,50 @@ public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
         }
         gameObject.SetActive(false);
     }
+
     public void Damage(int damageTaken)
     {
-        _health -= damageTaken;
-        if (_health <= 0)
+        if (isAlive)
         {
-            var expParticle = ParticlePool.Instance.expParticlePool.Get();
-            expParticle.transform.position = transform.position;
-            SplitIt();
+            _health -= damageTaken;
+            if (_health <= 0)
+            {
+                isAlive = false;
+                enemyAnim.AnimTrigger("Die");
+                var expParticle = ParticlePool.Instance.expParticlePool.Get();
+                expParticle.transform.position = transform.position;
+                StartCoroutine(WaitForSplitIt());
+            }
+            else
+            {
+                enemyAnim.AnimTrigger("GetHit");    
+            }
         }
+    }
+
+    IEnumerator WaitForSplitIt()
+    {
+        yield return new WaitForSeconds(1f);
+        SplitIt();
     }
 
     public void Kill()
     {
         _health = 0;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (_attackTime >= _attackSpeed)
+        {
+            if (other.TryGetComponent<PlayerBase>(out PlayerBase playerBase))
+            {
+                Debug.Log("Attack");
+                enemyAnim.AnimTrigger("Attack");
+                IDamageable damageable = playerBase.GetComponent<IDamageable>();
+                damageable.Damage(_damage);
+            }
+            _attackTime = 0;
+        }
     }
 }

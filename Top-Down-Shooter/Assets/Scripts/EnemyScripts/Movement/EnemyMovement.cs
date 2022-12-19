@@ -36,7 +36,9 @@ public class EnemyMovement : MonoBehaviour
             m_Rigidbody.MovePosition(transform.position + _moveDirection.normalized * _speed * Time.deltaTime);
         }
         else
+        {
             StartCoroutine(CheckForDistance());
+        }
     }
 
     private IEnumerator CheckForDistance()

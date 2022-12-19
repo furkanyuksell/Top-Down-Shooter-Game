@@ -38,7 +38,6 @@ public class Projectile : MonoBehaviour
         {
             IDamageable damageable = enemyCombat.GetComponent<IDamageable>();
             damageable.Damage(_damage);
-            //enemyCombat.SplitIt();
             _pool.Release(this);
         }
     }
