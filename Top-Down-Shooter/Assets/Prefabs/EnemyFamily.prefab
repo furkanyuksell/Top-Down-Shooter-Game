@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
-  _minDistance: 3
+  _minDistance: 2
   _playerTransform: {fileID: 0}
 --- !u!114 &8407093091862471837
 MonoBehaviour:
@@ -659,7 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 1
-  _minDistance: 3
+  _minDistance: 2
   _playerTransform: {fileID: 0}
 --- !u!114 &7809593358246321278
 MonoBehaviour:
