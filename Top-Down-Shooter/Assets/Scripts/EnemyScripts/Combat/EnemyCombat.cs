@@ -7,6 +7,7 @@ public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
 {
     [SerializeField] int _health = 2;
     [SerializeField] int _damage = 2;
+    [SerializeField] int _experiance = 2;
     [SerializeField] float _attackSpeed=2f;
     float _attackTime=0;
     [SerializeField] GameObject[] children;
@@ -49,8 +50,11 @@ public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
             {
                 isAlive = false;
                 enemyAnim.AnimTrigger("Die");
+                
                 var expParticle = ParticlePool.Instance.expParticlePool.Get();
                 expParticle.transform.position = transform.position;
+                expParticle.Experiance(_experiance);
+
                 StartCoroutine(WaitForSplitIt());
             }
             else
