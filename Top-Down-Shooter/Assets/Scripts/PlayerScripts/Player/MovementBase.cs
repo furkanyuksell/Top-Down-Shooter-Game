@@ -26,6 +26,7 @@ public class MovementBase : MonoBehaviour
             if(_canMove)
                 WalkMovement();   
         }
+        EventManagement.PlayerPosition?.Invoke(transform.position);
     }
     
     void RunMovement()
