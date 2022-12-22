@@ -18,7 +18,7 @@ public class DroneBase : MonoBehaviour
     [SerializeField] float circleRadius = 1;
     #endregion
     
-    void FixedUpdate()
+    void Update()
     {
         DroneMovementWithRotation();
     }
@@ -30,13 +30,13 @@ public class DroneBase : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, _move, _speed * Time.deltaTime);
         else{
             _positionOffset.Set(
-                Mathf.Cos( _angle ) * circleRadius,
-                0,
-                Mathf.Sin( _angle ) * circleRadius
+            Mathf.Cos( _angle ) * circleRadius,
+            0,
+            Mathf.Sin( _angle ) * circleRadius
             );
             transform.position = _move + _positionOffset;
             _angle += Time.deltaTime * rotationSpeed;
-        }
+        }        
     }
 
 
