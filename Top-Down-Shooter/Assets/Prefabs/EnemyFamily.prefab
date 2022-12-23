@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b821ef7939e3bf54a8771952fb3b3d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 1000
+  _health: 100
   _damage: 2
   _experiance: 2
   _attackSpeed: 2
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b821ef7939e3bf54a8771952fb3b3d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 2
+  _health: 50
   _damage: 2
   _experiance: 2
   _attackSpeed: 2
@@ -675,7 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b821ef7939e3bf54a8771952fb3b3d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 2
+  _health: 50
   _damage: 2
   _experiance: 2
   _attackSpeed: 2
