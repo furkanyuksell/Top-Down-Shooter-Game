@@ -23,7 +23,7 @@ public class DroneAttack : MonoBehaviour
     void Update()
     {
         Vector3 targetDir = _enemyPos - transform.position;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetDir), Time.deltaTime*lookAtSpeed);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetDir), lookAtSpeed);
         
         if(!_canFire)
             _fireRateCounter += Time.deltaTime;
