@@ -21,7 +21,8 @@ public class PopupPool : Singleton<PopupPool>
     DamagePopup Createpopup()
     {
         var popup = Instantiate(_popup);
-        popup.gameObject.transform.parent = this.gameObject.transform;
+        //popup.gameObject.transform.parent = this.gameObject.transform;
+        popup.gameObject.transform.SetParent(this.gameObject.transform);
         popup.SetPool(popupPool);
         return popup;
     }

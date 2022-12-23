@@ -48,8 +48,8 @@ public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
             _health -= damageTaken;
             var popup = PopupPool.Instance.popupPool.Get();
             popup.transform.position = transform.position;
-            popup.Setup(_damage);
-            
+            popup.Setup(damageTaken);
+
             if (_health <= 0)
             {
                 isAlive = false;

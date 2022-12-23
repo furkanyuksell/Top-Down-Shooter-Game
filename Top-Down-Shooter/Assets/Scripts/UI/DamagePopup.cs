@@ -7,7 +7,6 @@ using UnityEngine.Pool;
 public class DamagePopup : MonoBehaviour
 {
     private TextMeshPro textMesh;
-
     public ObjectPool<DamagePopup> _pool;
     public void SetPool(ObjectPool<DamagePopup> pool) => _pool = pool;
 
