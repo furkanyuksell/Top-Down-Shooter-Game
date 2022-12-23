@@ -37,9 +37,9 @@ public class DroneAttack : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        if (other.TryGetComponent<EnemyBase>(out EnemyBase enemyBase))
+        if (other.TryGetComponent<EnemyCombat>(out EnemyCombat enemyCombat))
         {
-            _enemyPos = enemyBase.transform.position;    
+            _enemyPos = enemyCombat.transform.position;    
             if (_canFire)
             {
                 foreach (var shooter in shooters)
