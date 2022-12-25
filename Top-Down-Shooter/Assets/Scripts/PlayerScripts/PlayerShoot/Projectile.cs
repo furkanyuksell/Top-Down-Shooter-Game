@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
 
     public void ProjectileForce()
     {
-        _rb.AddForce(transform.forward*10, ForceMode.Impulse);
+        _rb.AddForce(transform.forward*20, ForceMode.Impulse);
     }
 
     void OnTriggerEnter(Collider other)
