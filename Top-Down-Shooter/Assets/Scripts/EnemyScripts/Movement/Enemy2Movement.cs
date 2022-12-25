@@ -6,6 +6,7 @@ public class Enemy2Movement : MonoBehaviour
 {
     [SerializeField] float _speed = 5f;
     [SerializeField] Transform _playerTransform;
+    [SerializeField] EnemyAnim enemyAnim;
 
     Rigidbody m_Rigidbody;
     Vector3 _distanceVector;
@@ -38,6 +39,7 @@ public class Enemy2Movement : MonoBehaviour
         _distanceVector = (_playerTransform.position - transform.position);
         if (_gb <= 0)
         {
+            enemyAnim.AnimTrigger("Attack");
             m_Rigidbody.AddForce(transform.forward * 750);
             _gb = 255f;
             StartCoroutine(StopTheEnemy());
