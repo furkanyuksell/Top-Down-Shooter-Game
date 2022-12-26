@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy2Movement : MonoBehaviour, IDamageable, IKillable
 {
     [SerializeField] int _health = 2;
+    int _tempHealth;
     [SerializeField] int _damage = 2;
     [SerializeField] int _experiance = 2;
 
@@ -26,6 +27,7 @@ public class Enemy2Movement : MonoBehaviour, IDamageable, IKillable
     {
         _playerTransform = FindObjectOfType<MovementBase>().transform;
         m_Rigidbody = GetComponent<Rigidbody>();
+        _tempHealth = _health;
     }
 
     private void Start()
@@ -64,7 +66,6 @@ public class Enemy2Movement : MonoBehaviour, IDamageable, IKillable
 
     public void Damage(int damageTaken)
     {
-        Debug.Log("damageTaken");
         if (isAlive)
         {
             _health -= damageTaken;
@@ -75,13 +76,15 @@ public class Enemy2Movement : MonoBehaviour, IDamageable, IKillable
             if (_health <= 0)
             {
                 isAlive = false;
+                m_Rigidbody.velocity = Vector3.zero;
+                m_Rigidbody.angularVelocity = Vector3.zero;
                 enemyAnim.AnimTrigger("Die");
 
                 var expParticle = ParticlePool.Instance.expParticlePool.Get();
                 expParticle.transform.position = transform.position;
+                expParticle.transform.position += Vector3.up*2;
                 expParticle.Experiance(_experiance);
-                enemyBase.ReleaseEnemy();
-                DOVirtual.DelayedCall(.3f,()=> enemyBase.ReleaseEnemy());
+                DOVirtual.DelayedCall(.7f,()=> enemyBase.ReleaseEnemy());
             }
             else
             {
@@ -102,5 +105,17 @@ public class Enemy2Movement : MonoBehaviour, IDamageable, IKillable
             IDamageable damageable = playerBase.GetComponent<IDamageable>();
             damageable.Damage(_damage);
         }
+    }
+    void EnemyReset(){
+        isAlive = true;
+        _health = _tempHealth;
+    }
+    void OnEnable()
+    {
+        EnemyBase.OnEnemyReset += EnemyReset;
+    }
+    void OnDisable()
+    {
+        EnemyBase.OnEnemyReset -= EnemyReset;
     }
 }

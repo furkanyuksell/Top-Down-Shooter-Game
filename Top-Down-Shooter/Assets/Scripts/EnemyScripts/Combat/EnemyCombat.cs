@@ -6,6 +6,7 @@ using DG.Tweening;
 public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
 {
     [SerializeField] int _health = 2;
+    int _tempHealth;
     [SerializeField] int _damage = 2;
     [SerializeField] int _experiance = 2;
     [SerializeField] float _attackSpeed=2f;
@@ -17,7 +18,9 @@ public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
     [SerializeField] EnemyBase enemyBase;
     bool isAlive = true;
 
-
+    private void Awake() {
+        _tempHealth = _health;   
+    }
     private void FixedUpdate()
     {
         _attackTime += Time.deltaTime;
@@ -33,9 +36,7 @@ public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
                 children[i].transform.position = transform.position;
                 children[i].SetActive(true);
                 children[i].transform.DOMove(new Vector3(transform.position.x, 3f, transform.position.z) + transform.right / 2 * offsets[i], 0.4f)
-                    .OnComplete(() => children[i].transform.DOMove(new Vector3(transform.position.x, 1f, transform.position.z) + transform.right * offsets[i], 0.4f));
-
-                        
+                    .OnComplete(() => children[i].transform.DOMove(new Vector3(transform.position.x, 1f, transform.position.z) + transform.right * offsets[i], 0.4f));                        
             }
         }
         gameObject.SetActive(false);
@@ -58,6 +59,8 @@ public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
                 var expParticle = ParticlePool.Instance.expParticlePool.Get();
                 expParticle.transform.position = transform.position;
                 expParticle.Experiance(_experiance);
+                _health = _tempHealth;
+
                 enemyBase.EnemyCount();
                 StartCoroutine(WaitForSplitIt());
             }

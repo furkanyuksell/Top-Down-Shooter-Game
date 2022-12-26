@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 
 
-public class EnemyPool : Singleton<EnemyPool>
+public class EnemyPoolEagle : Singleton<EnemyPoolEagle>
 {
     public ObjectPool<EnemyBase> enemyPool;
     [SerializeField] EnemyBase _enemy;
@@ -29,11 +29,11 @@ public class EnemyPool : Singleton<EnemyPool>
     }
     void OnTakeParticleFromPool(EnemyBase enemyBase)
     {
-        _enemy.gameObject.SetActive(true);
+        enemyBase.gameObject.SetActive(true);
     }
 
     void OnReturnParticleToPool(EnemyBase enemyBase)
     {
-        _enemy.gameObject.SetActive(false);
+        enemyBase.gameObject.SetActive(false);
     }
 }

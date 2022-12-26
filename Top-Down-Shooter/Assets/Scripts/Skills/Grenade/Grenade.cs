@@ -9,6 +9,7 @@ public class Grenade : MonoBehaviour
     [SerializeField] ParticleSystem _particle;
     [SerializeField] AudioSource _audio;
     [SerializeField] GameObject _tntArt;
+    [SerializeField] SphereCollider _collider;
     bool _hitDamage = false;
     public ObjectPool<Grenade> _pool;
     public void SetPool(ObjectPool<Grenade> pool) => _pool = pool;
@@ -24,23 +25,23 @@ public class Grenade : MonoBehaviour
     void ResetGrenade()
     {
         _tntArt.SetActive(true);
+        _collider.enabled = false;
     }
 
     void PlayParticleSystem()
     {
-        _hitDamage = true;
         _tntArt.SetActive(false);
          _particle.Play();
         _audio.Play();
+        _collider.enabled = true;
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<EnemyCombat>(out EnemyCombat enemyCombat) && _hitDamage)
+        if (other.TryGetComponent<EnemyCombat>(out EnemyCombat enemyCombat))
         {
             IDamageable damageable = enemyCombat.GetComponent<IDamageable>();
             damageable.Damage(_damage);
-            _hitDamage = false;
         }
     }
 }
