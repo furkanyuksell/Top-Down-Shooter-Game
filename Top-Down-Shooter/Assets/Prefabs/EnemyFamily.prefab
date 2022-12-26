@@ -253,6 +253,7 @@ MonoBehaviour:
   - -3
   enemyAnim: {fileID: 285226410}
   _enemyCollider: {fileID: 5516518991340826849}
+  enemyBase: {fileID: 6849961591072740811}
 --- !u!136 &285226417
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -500,6 +501,7 @@ MonoBehaviour:
   offsets: []
   enemyAnim: {fileID: 2111150002}
   _enemyCollider: {fileID: 848852921}
+  enemyBase: {fileID: 6849961591072740811}
 --- !u!54 &6944814357286000501
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -683,6 +685,7 @@ MonoBehaviour:
   offsets: []
   enemyAnim: {fileID: 1982024931}
   _enemyCollider: {fileID: 448549212}
+  enemyBase: {fileID: 6849961591072740811}
 --- !u!54 &8694813206428741526
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -787,6 +790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08a80f36fd7b44c13a2c58899e603700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyCount: 3
 --- !u!1 &9061354099531641511
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
     [SerializeField] float[] offsets;
     [SerializeField] EnemyAnim enemyAnim;
     [SerializeField] Collider _enemyCollider;
-    
+    [SerializeField] EnemyBase enemyBase;
     bool isAlive = true;
 
 
@@ -58,7 +58,7 @@ public class EnemyCombat : MonoBehaviour, IDamageable, IKillable
                 var expParticle = ParticlePool.Instance.expParticlePool.Get();
                 expParticle.transform.position = transform.position;
                 expParticle.Experiance(_experiance);
-
+                enemyBase.EnemyCount();
                 StartCoroutine(WaitForSplitIt());
             }
             else

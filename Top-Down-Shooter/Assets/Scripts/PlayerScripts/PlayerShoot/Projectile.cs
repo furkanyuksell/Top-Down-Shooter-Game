@@ -40,5 +40,12 @@ public class Projectile : MonoBehaviour
             damageable.Damage(_damage);
             _pool.Release(this);
         }
+
+        if (other.TryGetComponent<Enemy2Movement>(out Enemy2Movement enemy2Movement))
+        {
+            IDamageable damageable = enemy2Movement.GetComponent<IDamageable>();
+            damageable.Damage(_damage);
+            _pool.Release(this);
+        }
     }
 }

@@ -15,7 +15,7 @@ public class EnemyPool : Singleton<EnemyPool>
         enemyPool = new ObjectPool<EnemyBase>(CreateEnemy, OnTakeParticleFromPool, OnReturnParticleToPool);
     }
 
-    public void InıtEnemy(EnemyBase enemyBase)
+    public void InitEnemy(EnemyBase enemyBase)
     {
         _enemy = enemyBase;
     }
