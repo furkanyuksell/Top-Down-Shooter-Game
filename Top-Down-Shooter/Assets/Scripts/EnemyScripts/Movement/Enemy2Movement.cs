@@ -24,6 +24,7 @@ public class Enemy2Movement : MonoBehaviour, IDamageable, IKillable
 
     private void Awake()
     {
+        _playerTransform = FindObjectOfType<MovementBase>().transform;
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -79,6 +80,7 @@ public class Enemy2Movement : MonoBehaviour, IDamageable, IKillable
                 var expParticle = ParticlePool.Instance.expParticlePool.Get();
                 expParticle.transform.position = transform.position;
                 expParticle.Experiance(_experiance);
+                enemyBase.ReleaseEnemy();
                 DOVirtual.DelayedCall(.3f,()=> enemyBase.ReleaseEnemy());
             }
             else
