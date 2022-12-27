@@ -5,6 +5,7 @@ using UnityEngine;
 public class TurtleSpawner : MonoBehaviour
 {
     [SerializeField] EnemyBase _enemy;
+    [SerializeField] float _spawnTime=5;
     private void Start()
     {
         StartCoroutine(StartSpawn());
@@ -14,7 +15,7 @@ public class TurtleSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(_spawnTime);
             _enemy = EnemyPoolTurtle.Instance.enemyPool.Get();
             _enemy.transform.position = transform.position;
 

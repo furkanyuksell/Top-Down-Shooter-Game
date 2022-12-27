@@ -7,11 +7,6 @@ public class SceneManager : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
-    public GameObject expPoints;
-    [SerializeField] Slider healthBarSlider;
-    [SerializeField] TextMeshProUGUI expPointsText;
-    [SerializeField] Image expBarSlider;
-
     public bool isPaused;
     public bool isOver;
 
@@ -38,10 +33,6 @@ public class SceneManager : MonoBehaviour
         isPaused = false;
     }
     
-    public void GetExperiencePoint(int exp) // delege
-    {
-        expPointsText.text = exp.ToString();
-    }
 
     public void Retry()
     {

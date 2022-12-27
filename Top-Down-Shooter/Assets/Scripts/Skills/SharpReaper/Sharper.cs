@@ -18,5 +18,11 @@ public class Sharper : MonoBehaviour
             IDamageable damageable = enemyCombat.GetComponent<IDamageable>();
             damageable.Damage(_damage);
         }
+
+        if (other.TryGetComponent<Enemy2Movement>(out Enemy2Movement enemy2Movement))
+        {
+            IDamageable damageable = enemy2Movement.GetComponent<IDamageable>();
+            damageable.Damage(_damage);
+        }
     }
 }

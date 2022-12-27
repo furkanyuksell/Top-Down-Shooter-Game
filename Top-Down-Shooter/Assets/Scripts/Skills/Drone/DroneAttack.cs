@@ -47,5 +47,16 @@ public class DroneAttack : MonoBehaviour
                 _canFire = false;
             }
         }
+
+        if (other.TryGetComponent<Enemy2Movement>(out Enemy2Movement enemy2Movement))
+        {
+            _enemyPos = enemy2Movement.transform.position;
+            if (_canFire)
+            {
+                foreach (var shooter in shooters)
+                    shooter.Shoot();
+                _canFire = false;
+            }
+        }
     }
 }
