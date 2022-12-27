@@ -14,7 +14,7 @@ public class GameLevel : Singleton<GameLevel>
         _playerLevel = level;
         for (int i = 0; i < _playerLevel; i++)
         {
-            Instantiate(spawnGate[Random.Range(0,2)], new Vector3(_playerPos.x+(20+_playerLevel), 0f, _playerPos.z+(20+_playerLevel)), Quaternion.identity, _parent.transform);   
+            Instantiate(spawnGate[Random.Range(0,2)], new Vector3(_playerPos.x+(Random.Range(-40,40)+_playerLevel), 0f, _playerPos.z+(Random.Range(-40,40)+_playerLevel)), Quaternion.identity, _parent.transform);   
         }
     }
 
