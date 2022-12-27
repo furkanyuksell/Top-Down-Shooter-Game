@@ -30,11 +30,13 @@ public class SharpReaper : MonoBehaviour
             if (sharp.gameObject.activeInHierarchy)
             {
                 count++;
+                sharp.transform.localPosition = Vector3.up*2;
+                sharp.transform.localRotation = Quaternion.identity;
                 activeSharpers.Add(sharp);
             }
         }
-
-        Debug.Log(count);
+        _rotateSpeed += count/5;
+        
         float angleStep = 360 / count;
 
         for(int i = 0; i < count; i++)

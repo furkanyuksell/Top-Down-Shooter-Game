@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RocketData
   m_EditorClassIdentifier: 
   projectile: {fileID: 1511559905847041921, guid: 20fbe3fafeff50646ba8f78471f1a8e7, type: 3}
-  damage: 5
+  damage: 15
   fireRate: 1
   range: 15
   animName: Rocket

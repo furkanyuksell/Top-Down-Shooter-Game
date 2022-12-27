@@ -9,6 +9,10 @@ public class GameLevel : Singleton<GameLevel>
     [SerializeField] GameObject _parent;
     Vector3 _playerPos;
 
+    protected override void Awake() {
+        Instantiate(spawnGate[Random.Range(0,2)], new Vector3(_playerPos.x+(Random.Range(-40,40)+_playerLevel), 0f, _playerPos.z+(Random.Range(-40,40)+_playerLevel)), Quaternion.identity, _parent.transform);       
+    }
+
     void SpawnGateWithLevelRate(int level)
     {
         _playerLevel = level;
