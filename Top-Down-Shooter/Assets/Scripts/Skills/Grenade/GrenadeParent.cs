@@ -12,7 +12,10 @@ public class GrenadeParent : MonoBehaviour
     {
         StartCoroutine(GrenadeThrower());
     }
-
+    public void UpgradeGrenade(){
+        _level++;
+        _throwTime-= 0.2f;
+    }
     IEnumerator GrenadeThrower()
     {
         while(true)

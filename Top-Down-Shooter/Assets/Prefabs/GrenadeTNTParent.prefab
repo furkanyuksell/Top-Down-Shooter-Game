@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2874180010791735378}
   m_Layer: 0
   m_Name: GrenadeTNTParent
-  m_TagString: Untagged
+  m_TagString: Grenade
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _throwTime: 3
-  _level: 2
+  _level: 1

@@ -8,6 +8,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
     [Header("DEBUG")]
     [SerializeField] int _experience = 0;
     [SerializeField] int _level = 1;
+    public List<GameObject> activeSkill = new List<GameObject>();
 
     private void Start()
     {

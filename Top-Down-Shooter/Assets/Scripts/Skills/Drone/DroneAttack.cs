@@ -9,15 +9,18 @@ public class DroneAttack : MonoBehaviour
     [SerializeField] Projectile projectile;
     [SerializeField] int _damage = 5;
     [SerializeField] float _rate;
-    Shooter[] shooters;    
+    [SerializeField] Shooter[] shooters;    
     float _fireRateCounter = 0f;
     bool _canFire = true;
     private void Awake() 
     {
-        shooters = GetComponentsInChildren<Shooter>();
+        //shooters = GetComponentsInChildren<Shooter>();
         foreach (var shooter in shooters)
         {
-            shooter.InitShooter(projectile, _damage, 10);
+            if (shooter.gameObject.activeInHierarchy)
+            {
+                shooter.InitShooter(projectile, _damage, 10);   
+            }
         }
     }
     void Update()
@@ -56,6 +59,20 @@ public class DroneAttack : MonoBehaviour
                 foreach (var shooter in shooters)
                     shooter.Shoot();
                 _canFire = false;
+            }
+        }
+    }
+
+    public void ActivateShooter()
+    {
+        foreach (var shooter in shooters)
+        {
+            if (!shooter.gameObject.activeInHierarchy)
+            {
+                Debug.Log("inactive shooter"+ shooter.gameObject.name);
+                shooter.gameObject.SetActive(true);
+                shooter.InitShooter(projectile, _damage, 10);  
+                return;
             }
         }
     }

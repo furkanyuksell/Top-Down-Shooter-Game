@@ -24,7 +24,7 @@ public class SharpReaper : MonoBehaviour
     void GetInOrder()
     {
         activeSharpers.Clear();
-        
+        count = 0;
         foreach (Sharper sharp in sharpers)
         {
             if (sharp.gameObject.activeInHierarchy)
@@ -34,6 +34,7 @@ public class SharpReaper : MonoBehaviour
             }
         }
 
+        Debug.Log(count);
         float angleStep = 360 / count;
 
         for(int i = 0; i < count; i++)
@@ -43,14 +44,15 @@ public class SharpReaper : MonoBehaviour
         }
     }
 
-    void OpenNewSharper()
+    public void OpenNewSharper()
     {
         foreach(Sharper sharp in sharpers)
         {
             if (!sharp.gameObject.activeInHierarchy)
             {
                 sharp.gameObject.SetActive(true);
-                break;
+                GetInOrder();
+                return;
             }
         }
     }

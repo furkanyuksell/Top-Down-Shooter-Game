@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &924248725634113304
 Transform:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &924248726505995491
 Transform:
   m_ObjectHideFlags: 0
@@ -144,9 +144,9 @@ GameObject:
   - component: {fileID: 924248726568402684}
   - component: {fileID: 924248726568402687}
   - component: {fileID: 924248726568402686}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Drone
-  m_TagString: Untagged
+  m_TagString: Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -201,6 +201,11 @@ MonoBehaviour:
   projectile: {fileID: 0}
   _damage: 5
   _rate: 0.3
+  shooters:
+  - {fileID: 924248726498229946}
+  - {fileID: 924248726505995492}
+  - {fileID: 924248726912513754}
+  - {fileID: 924248725634113305}
 --- !u!135 &924248726568402686
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -230,7 +235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &924248726912513753
 Transform:
   m_ObjectHideFlags: 0
@@ -268,6 +273,10 @@ PrefabInstance:
     - target: {fileID: 1262010245510058, guid: d0e2b6bf944e12c439220558bf7de75a, type: 3}
       propertyPath: m_Name
       value: Robot_Guardian
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262010245510058, guid: d0e2b6bf944e12c439220558bf7de75a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4530880045128832, guid: d0e2b6bf944e12c439220558bf7de75a, type: 3}
       propertyPath: m_RootOrder
