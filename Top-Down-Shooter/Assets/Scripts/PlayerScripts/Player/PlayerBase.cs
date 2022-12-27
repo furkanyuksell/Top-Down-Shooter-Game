@@ -22,6 +22,14 @@ public class PlayerBase : MonoBehaviour, IDamageable
         EventManagement.OnPlayerHealth?.Invoke(_health);
     }
 
+    public void Health(int health)
+    { 
+        _health += health;
+        if (_health >= 100)
+            _health = 100;
+        EventManagement.OnPlayerHealth?.Invoke(_health);
+    }
+
     public void Experiance(int exp){
         _experience += exp;
         if (_experience >= 100)
