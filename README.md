@@ -1,5 +1,7 @@
 The game included in the project was prepared for the Introduction to Game Development course I took at Yıldız Technical University. 
 
+You cannot download and run the project at the moment because it contains some designs that are prohibited from sharing. However, I can send you the build of the project so you can play it! :)
+
 -The game includes 3 different weapons, 3 different enemies, and 3 different character abilities. 
 
 -The character has a health system, level, and experience system. 
