@@ -26,4 +26,4 @@ You can move your character using the W, A, S, and D keys, and aim using the mou
 https://user-images.githubusercontent.com/81265340/228054716-c8f142fd-78d8-41be-a7d1-ccc2a2249eeb.mp4
 
 
-https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTNlZmE1YzQ4YjEwMDA2ODRjOGRjZmUyNTJkZDNiZTQ3MDk1MzAwNyZjdD1n/SnySIMchqU0IIJ4Jku/giphy.gif
+![giphy](https://user-images.githubusercontent.com/81265340/228057057-da54106d-cf75-4c46-8db3-de76f43b4282.gif)
