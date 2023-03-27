@@ -17,6 +17,11 @@ This is a project for the Introduction to Game Development course at Yıldız Te
 * Poolable objects such as enemies, portals, experience particles, and bullets
 * Character weapon switching and animation rigging system for different weapon holding positions
 
+## 🎮 How to Play
+
+You can move your character using the W, A, S, and D keys, and aim using the mouse. Press the Q key to switch weapons and the C key to holster your weapon.
+
+
 ![4](https://user-images.githubusercontent.com/81265340/210109929-60f56e82-ede9-4102-b8d9-234c10d88812.png)
 ![2](https://user-images.githubusercontent.com/81265340/210109925-1f59ec15-e8fd-41e2-b9b9-a72602ccf11e.png)
 ![3](https://user-images.githubusercontent.com/81265340/210109928-56baca0e-3e24-4831-8320-f237c581adf6.png)
