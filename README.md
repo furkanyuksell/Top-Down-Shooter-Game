@@ -6,7 +6,7 @@ This is a project for the Introduction to Game Development course at Yıldız Te
 
 ## Features
 
-**The game features the following:**
+*The game features the following:*
 
 * 3 different weapons
 * 3 different enemies
